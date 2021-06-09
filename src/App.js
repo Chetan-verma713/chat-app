@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch } from 'react-router';
 import 'rsuite/dist/styles/rsuite-default.css';
 import Signin from './pages/Signin';
-import Home from './pages/Home';
+import Index from './pages/Home';
 import './styles/main.scss';
 import PrivateRotue from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
@@ -16,7 +16,7 @@ function App() {
           <Signin />
         </PublicRoute>
         <PrivateRotue path="/">
-          <Home />
+          <Index />
         </PrivateRotue>
       </Switch>
     </ProfileProvider>

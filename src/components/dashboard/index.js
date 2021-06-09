@@ -1,4 +1,4 @@
-/* eslint-disable */
+// /* eslint-disable */
 import React from 'react';
 import { Alert, Button, Divider, Drawer } from 'rsuite';
 import { useProfile } from '../../context/profile.context';
@@ -19,7 +19,7 @@ const DashBoard = ({ onSignOut }) => {
 
       Alert.success('NickName has been Updated', 4000);
     } catch (error) {
-      Alert.error(err.message, 4000);
+      Alert.error(error.message, 4000);
     }
   };
 
