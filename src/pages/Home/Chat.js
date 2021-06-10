@@ -1,11 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Loader } from 'rsuite';
 import Messages from '../../components/chat-window/messages';
 import ChatTop from '../../components/chat-window/top';
 import ChatBottom from '../../components/chat-window/bottom';
 import { useRooms } from '../../context/rooms.context';
+import { CurrentRoomProvider } from '../../context/current-room.context';
 
 const Chat = () => {
   const { chatId } = useParams();
@@ -13,7 +15,7 @@ const Chat = () => {
   const rooms = useRooms();
 
   if (!rooms) {
-    return <Loader centered vertical size="md" contet="Loading" speen="slow" />;
+    return <Loader vertical size="md" contet="Loading" speen="slow" />;
   }
 
   const currentRoom = rooms.find(room => room.id === chatId);
@@ -22,8 +24,15 @@ const Chat = () => {
     return <h6 className="text-center mt-page">Chat {chatId} not found</h6>;
   }
 
+  const { name, description } = currentRoom;
+
+  const currentRoomData = {
+    name,
+    description,
+  };
+
   return (
-    <>
+    <CurrentRoomProvider data={currentRoomData}>
       <div className="chat-top">
         <ChatTop />
       </div>
@@ -33,7 +42,7 @@ const Chat = () => {
       <div className="chat-bottom">
         <ChatBottom />
       </div>
-    </>
+    </CurrentRoomProvider>
   );
 };
 

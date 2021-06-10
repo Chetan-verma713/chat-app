@@ -1,5 +1,6 @@
 // /* eslint-disable */
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Alert, Button, Divider, Drawer } from 'rsuite';
 import { useProfile } from '../../context/profile.context';
 import { database } from '../../misc/firebase';

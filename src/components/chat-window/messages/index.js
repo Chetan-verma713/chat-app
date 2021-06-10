@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Messages = () => <div>Messages</div>;
+const Messages = () => <div>Message</div>;
 
 export default Messages;
