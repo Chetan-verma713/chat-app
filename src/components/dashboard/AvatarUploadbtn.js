@@ -106,7 +106,7 @@ const AvatarUploadBtn = () => {
             <Modal.Title>Adjust and upload new avatar</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div className="">
+            <div className="d-flex justify-content-center align-items-center h-100">
               {img && (
                 <AvatarEditor
                   ref={avatarEditorRef}
