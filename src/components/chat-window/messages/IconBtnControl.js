@@ -3,7 +3,6 @@ import { Badge, Icon, IconButton, Tooltip, Whisper } from 'rsuite';
 
 const ConditionalBadge = ({ condition, children }) =>
   condition ? <Badge content={condition}>{children}</Badge> : children;
-
 const IconBtnControl = ({
   isVisible,
   iconName,
