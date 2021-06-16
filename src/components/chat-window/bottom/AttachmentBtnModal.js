@@ -21,22 +21,20 @@ const AttachmentBtnModal = ({ afterUpload }) => {
 
   const onUpload = async () => {
     try {
-      const uploadPromises = FileList.map(f => {
-        return storage
+      const uploadPromises = FileList.map(f =>
+        storage
           .ref(`/chat/${chatId}`)
           .child(Date.now() + f.name)
-          .put(f.blobFile, { cacheControl: `public,max-age=${3600 * 24 * 3}` });
-      });
+          .put(f.blobFile, { cacheControl: `public,max-age=${3600 * 24 * 3}` })
+      );
 
       const uploadSnapshots = await Promise.all(uploadPromises);
 
-      const shapePromises = uploadSnapshots.map(async snap => {
-        return {
-          contentType: snap.metadata.contentType,
-          name: snap.metadata.name,
-          url: await snap.ref.getDownloadURL(),
-        };
-      });
+      const shapePromises = uploadSnapshots.map(async snap => ({
+        contentType: snap.metadata.contentType,
+        name: snap.metadata.name,
+        url: await snap.ref.getDownloadURL(),
+      }));
       const files = await Promise.all(shapePromises);
 
       await afterUpload(files);
