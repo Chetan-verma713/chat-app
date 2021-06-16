@@ -11,7 +11,6 @@ import ImageBtnModal from './ImageBtnModal';
 import IconBtnControl from './IconBtnControl';
 
 const renderFileMessage = file => {
-  // if (file.contentType.includes('image')) {
   if (file.contentType.includes('image')) {
     return (
       <div className="height-220">
@@ -20,6 +19,15 @@ const renderFileMessage = file => {
     );
   }
 
+  if (file.contentType.includes('audio')) {
+    return (
+      //  eslint-disable-next-line jsx-a11y/media-has-caption
+      <audio controls>
+        <source src={file.url} type="audio/mp3" />
+        Your Browser doesnot support the audio element
+      </audio>
+    );
+  }
   return <a href={file.url}>DownLoad {file.name}</a>;
 };
 
@@ -91,7 +99,7 @@ const MessageItem = ({ message, handleAdmin, handleLike, handleDelete }) => {
             isVisible={canShowIcons}
             iconName="close"
             tooltip="Delete this message"
-            onClick={() => handleDelete(message.id)}
+            onClick={() => handleDelete(message.id, file)}
           />
         )}
       </div>
